@@ -25,3 +25,5 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# do not use `npm`, use `yarn` instead and commit `yarn.lock`
+package-lock.json
