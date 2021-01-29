@@ -92,3 +92,5 @@ export const CommentsGridPage = () => {
     </>
   );
 };
+
+export default CommentsGridPage;

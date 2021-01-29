@@ -1,13 +1,12 @@
 import React from 'react';
 import Header from './Components/Header';
+import CommentsGridPage from 'src/CommentsGridPage';
 
 const App = () => {
   return (
     <div className="App">
         <Header/>
-        <header className="App-header">
-        Stonks Chat
-        </header>
+        <CommentsGridPage/>
     </div> 
     )
 }
