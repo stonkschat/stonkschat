@@ -26,7 +26,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -47,7 +46,7 @@ const Header = () => {
           <Typography variant="h3" className={classes.title}>
             Stonks Chat
           </Typography>
-          {auth && (
+          (
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -77,7 +76,7 @@ const Header = () => {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
-          )}
+          )
         </Toolbar>
       </AppBar>
   );
