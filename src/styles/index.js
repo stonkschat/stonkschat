@@ -23,7 +23,7 @@ const config = {
         paper: '#282C34'
       },
       primary: {
-        main: '#8a85ff'
+        main: '#1f2229'
       },
       secondary: {
         main: '#8a85ff'
