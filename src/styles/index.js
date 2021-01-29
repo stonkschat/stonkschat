@@ -18,9 +18,9 @@ const config = {
         shadow: 'rgba(0, 0, 0, 0.4)',
       },
       background: {
-        default: '#282C34',
+        default: '#1d1d1d',
         dark: '#1c2025',
-        paper: '#282C34'
+        paper: '#303030'
       },
       primary: {
         main: '#1f2229'
