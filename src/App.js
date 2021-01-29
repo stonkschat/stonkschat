@@ -1,12 +1,23 @@
-import './App.css';
+import { CommentsGridPage } from './CommentsGridPage';
+
+import { QueryClientProvider, QueryClient } from 'react-query';
+
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 0,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        Stonks Chat
-      </header>
-    </div>
+    // TODO AppProviders
+    <QueryClientProvider client={queryClient}>
+      {/* TODO router */}
+      <CommentsGridPage />
+    </QueryClientProvider>
   );
 }
 
