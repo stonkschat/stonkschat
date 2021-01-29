@@ -1,29 +1,26 @@
 import './styles/App.css';
 import React, { Suspense } from 'react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
-import {
-    createStyles,
-    makeStyles,
-    CssBaseline,
-    ThemeProvider,
-} from '@material-ui/core';
+import { createStyles, makeStyles, CssBaseline, ThemeProvider } from '@material-ui/core';
 
 import Routes from './Routes';
 import theme from './styles/';
 
-const useStyles = makeStyles((theme) => createStyles({
+const useStyles = makeStyles((theme) =>
+  createStyles({
     '@global': {
       '*': {
         boxSizing: 'border-box',
         margin: 0,
-        padding: 0
+        padding: 0,
       },
       html: {
         '-webkit-font-smoothing': 'antialiased',
         '-moz-osx-font-smoothing': 'grayscale',
         height: '100%',
-        width: '100%'
+        width: '100%',
       },
       body: {
         height: '100%',
@@ -32,15 +29,15 @@ const useStyles = makeStyles((theme) => createStyles({
       '#root': {
         height: '100%',
         width: '100%',
-        background: theme.palette.background.dark
-      }
-    }
-}));
+        background: theme.palette.background.dark,
+      },
+    },
+  })
+);
 
 const Spinner = () => {
-    <div>LOADING....</div>
-}
-
+  <div>LOADING....</div>;
+};
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -51,20 +48,21 @@ export const queryClient = new QueryClient({
   },
 });
 
-
 const History = createBrowserHistory();
 function App() {
-    useStyles();
+  useStyles();
   return (
-     <Suspense fallback={<Spinner />}>
+    <QueryClientProvider client={queryClient}>
+      <Suspense fallback={<Spinner />}>
         <ThemeProvider theme={theme}>
-        <CssBaseline />
-                <Router history={History}>
-                    <Routes />
-                </Router>
+          <CssBaseline />
+          <Router history={History}>
+            <Routes />
+          </Router>
         </ThemeProvider>
-    </Suspense>
-    )
+      </Suspense>
+    </QueryClientProvider>
+  );
 }
 
 export default App;
