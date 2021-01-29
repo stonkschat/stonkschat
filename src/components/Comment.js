@@ -56,10 +56,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// return time since creation ex: a few seconds ago
+const getCreatedDuration = (createdAt) => {
+  const seconds = moment().unix() - createdAt;
+  return moment.duration(seconds, 'seconds').humanize();
+};
+
 export const Comment = ({ comment, author, theme }) => {
   const classes = useStyles(theme);
   const authorAge = moment(author.created_utc * 1000);
-  console.log(comment);
+  const commentAge = getCreatedDuration(comment.created_utc);
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -85,6 +92,7 @@ export const Comment = ({ comment, author, theme }) => {
         <Divider className={classes.divider} style={{ marginTop: 10 }} />
         <Typography variant="p2" className={classes.author}>
           {`u/${author.name}`}
+          <span style={{ paddingLeft: 20 }}>{commentAge} ago</span>
         </Typography>
         <Typography variant="p2" color="textSecondary" className={classes.author}>
           {author.comment_karma} Karma • Member Since: {authorAge.format('MMM D YYYY')}
