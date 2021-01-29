@@ -1,13 +1,65 @@
-import './App.css';
+import './styles/App.css';
+import React, { Suspense } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import {
+    createStyles,
+    makeStyles,
+    CssBaseline,
+    ThemeProvider,
+} from '@material-ui/core';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Stonks Chat
-      </header>
-    </div>
-  );
+import Routes from './Routes';
+import theme from './styles/';
+
+const useStyles = makeStyles((theme) => createStyles({
+    '@global': {
+      '*': {
+        boxSizing: 'border-box',
+        margin: 0,
+        padding: 0
+      },
+      html: {
+        '-webkit-font-smoothing': 'antialiased',
+        '-moz-osx-font-smoothing': 'grayscale',
+        height: '100%',
+        width: '100%'
+      },
+      body: {
+        height: '100%',
+        width: '100%',
+      },
+      '#root': {
+        height: '100%',
+        width: '100%',
+        background: theme.palette.background.dark
+      }
+    }
+}));
+
+const Spinner = () => {
+    <div>LOADING....</div>
 }
 
+const History = createBrowserHistory();
+function App() {
+    useStyles();
+  return (
+     <Suspense fallback={<Spinner />}>
+        <ThemeProvider theme={theme}>
+        <CssBaseline />
+                <Router history={History}>
+                    <Routes />
+                </Router>
+        </ThemeProvider>
+    </Suspense>
+    )
+}
+/* 
+<div className="App">
+    <header className="App-header">
+    Stonks Chat
+    </header>
+</div> 
+*/
 export default App;
