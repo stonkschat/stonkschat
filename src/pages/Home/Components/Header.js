@@ -46,7 +46,7 @@ const Header = () => {
           <Typography variant="h3" className={classes.title}>
             Stonks Chat
           </Typography>
-          (
+          
             <div>
               <IconButton
                 aria-label="account of current user"
@@ -76,7 +76,6 @@ const Header = () => {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
-          )
         </Toolbar>
       </AppBar>
   );
