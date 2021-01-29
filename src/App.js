@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) =>
       '#root': {
         height: '100%',
         width: '100%',
-        background: theme.palette.background.dark,
       },
     },
   })
