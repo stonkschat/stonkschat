@@ -6,6 +6,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import Typography from '@material-ui/core/Typography';
+import MarkdownIt from 'markdown-it';
+
+const md = new MarkdownIt();
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,7 +43,7 @@ export const Comment = ({ comment, author, theme }) => {
           link_title: "Technical error gain, market order filled for GME at $2,600 a share"
           link_url: "https://i.redd.it/jvkojrsv86e61.jpg" */}
         <Typography variant="h4" className={classes.comment_body}>
-          {comment.body}
+          <div dangerouslySetInnerHTML={{ __html: md.render(comment.body) }} />
         </Typography>
         {comment.total_awards_received > 0 ? `${comment.total_awards_received} Awards` : ''}
       </CardContent>
