@@ -10,7 +10,7 @@ import ErrorPage from 'src/pages/Error/';
 const Routes = () => (
   <Switch>
     <Route exact={true} path="/" render={(props) => <Home {...props} />} />
-    <Route exact={true} path="/login" render={(props) => <Login {...props} />} />
+    <Route exact={true} path="/slider" render={(props) => <Login {...props} />} />
     <Route path="*">
       <ErrorPage />
     </Route>
