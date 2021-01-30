@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: `1px solid ${theme.palette.divider}`,
     borderBottom: `1px solid ${theme.palette.divider}`,
     width: '100vw',
+    overflow: 'hidden',
     height: 40,
     display: 'flex',
     flexDirection: 'row',
@@ -43,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
   },
   tickerContainer: {
+    marginRight: 20,
+    marginLeft: 20,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
@@ -51,20 +54,26 @@ const useStyles = makeStyles((theme) => ({
     //border: '2px solid salmon'
   },
   name: {
+    whiteSpace: 'nowrap',
     //background: 'orange',
     width: '25%',
     height: '100%',
   },
   price: {
+    whiteSpace: 'nowrap',
     height: '100%',
+    marginRight: 5,
+    marginLeft: 5,
     fontWeight: 400,
     color: fade(theme.palette.text.primary, 0.8),
   },
   success: {
+    whiteSpace: 'nowrap',
     color: theme.palette.success.light,
     height: '100%',
   },
   error: {
+    whiteSpace: 'nowrap',
     color: theme.palette.error.light,
     height: '100%',
   },
