@@ -6,8 +6,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 
 import { Comment } from './components/Comment';
-import { SortBySelector, SortEnum } from "./components/SortBySelector";
-
+import { SortBySelector, SortEnum } from './components/SortBySelector';
 
 export const CommentsGridPage = () => {
   // fetching comments
@@ -79,7 +78,7 @@ export const CommentsGridPage = () => {
     <>
       {/* saved in local storage or a cookie */}
       <SortBySelector initialSort={SortEnum.ACCOUNT_AGE} />
-  
+
       {!!commentGroups && (
         <Grid container spacing={3}>
           {[1, 2, 3, 4].map((groupIndex) => {
