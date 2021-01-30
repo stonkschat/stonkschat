@@ -57,15 +57,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 // return time since creation ex: a few seconds ago
-const getCreatedDuration = (createdAt) => {
+/*const getCreatedDuration = (createdAt) => {
   const seconds = moment().unix() - createdAt;
   return moment.duration(seconds, 'seconds').humanize();
-};
+};*/
 
-export const Comment = ({ comment, author, theme }) => {
+export const Comment = ({ comment, theme }) => {
   const classes = useStyles(theme);
-  const authorAge = moment(author.created_utc * 1000);
-  const commentAge = getCreatedDuration(comment.created_utc);
+  const authorAge = moment(comment.author.created_utc * 1000);
+  const commentAge = 3; // just for testing purposes
 
   return (
     <Card className={classes.root}>
@@ -74,7 +74,7 @@ export const Comment = ({ comment, author, theme }) => {
         title={
           <Typography variant="h6" className={classes.comment_title}>
             <a className={classes.comment_title} href={comment.link_permalink} target="_blank" rel="noreferrer">
-              {comment.link_title}
+              {comment.post_title}
             </a>
           </Typography>
         }
@@ -91,11 +91,11 @@ export const Comment = ({ comment, author, theme }) => {
         {comment.total_awards_received > 0 ? `${comment.total_awards_received} Awards` : ''}
         <Divider className={classes.divider} style={{ marginTop: 10 }} />
         <Typography variant="p2" className={classes.author}>
-          {`u/${author.name}`}
+          {`u/${comment.author.name}`}
           <span style={{ paddingLeft: 20 }}>{commentAge} ago</span>
         </Typography>
         <Typography variant="p2" color="textSecondary" className={classes.author}>
-          {author.comment_karma} Karma • Member Since: {authorAge.format('MMM D YYYY')}
+          {comment.author.karma} Karma • Member Since: {authorAge.format('MMM D YYYY')}
         </Typography>
       </CardContent>
     </Card>
