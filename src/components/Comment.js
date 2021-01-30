@@ -21,16 +21,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export const Comment = ({ comment, author, theme }) => {
+export const Comment = ({ comment, theme }) => {
   const classes = useStyles(theme);
-  const authorAge = moment(author.created_utc * 1000);
+  const authorAge = moment(comment.author.created_utc * 1000);
   console.log(comment);
   return (
     <Card className={classes.root}>
       <CardHeader
         title={
           <a className={classes.comment_title} href={comment.link_permalink} target="_blank" rel="noreferrer">
-            {comment.link_title}
+            {comment.post_title}
           </a>
         }
         //subheader={moment(comment.created_utc * 1000).format('LLLL')}
@@ -45,9 +45,9 @@ export const Comment = ({ comment, author, theme }) => {
         {comment.total_awards_received > 0 ? `${comment.total_awards_received} Awards` : ''}
       </CardContent>
       <CardActionArea>
-        {`u/${author.name}`}
+        {`u/${comment.author.name}`}
         <br />
-        {author.comment_karma} Karma * Member Since: {authorAge.format('MMM D YYYY')}
+        {comment.author.karma} Karma * Member Since: {authorAge.format('MMM D YYYY')}
       </CardActionArea>
     </Card>
   );
