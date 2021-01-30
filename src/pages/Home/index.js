@@ -5,10 +5,10 @@ import CommentsGridPage from 'src/CommentsGridPage';
 const App = () => {
   return (
     <div className="App">
-        <Header/>
-        <CommentsGridPage/>
-    </div> 
-    )
-}
+      <Header />
+      <CommentsGridPage />
+    </div>
+  );
+};
 
 export default App;
