@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import { groupBy } from 'lodash';
 import moment from 'moment';
-import { Grid } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 
@@ -15,7 +15,7 @@ export const CommentsGridPage = () => {
     async () => {
       const response = await axios.request({
         method: 'get',
-        url: 'https://www.reddit.com/r/wallstreetbets/comments/.json',
+        url: 'https://www.reddit.com/r/wallstreetbets/comments.json',
         params: {
           sort: 'new',
           limit: 30, // not 100 for now because of bad performance of fetching user details individually
@@ -80,18 +80,18 @@ export const CommentsGridPage = () => {
       <SortBySelector initialSort={SortEnum.ACCOUNT_AGE} />
 
       {!!commentGroups && (
-        <Grid container spacing={3}>
+        <Box style={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }} container spacing={3}>
           {[1, 2, 3, 4].map((groupIndex) => {
             return (
-              <Grid key={groupIndex} item xs={12} sm={6} md={3}>
+              <Box key={groupIndex} style={{ minWidth: '25%', maxHeight: '100vh', overflow: 'auto' }}>
                 {commentGroups[groupIndex]?.map?.((comment) => {
                   const author = authors.data.find((author) => comment.author === author.name);
                   return <Comment key={comment.id} comment={comment} author={author} />;
                 })}
-              </Grid>
+              </Box>
             );
           })}
-        </Grid>
+        </Box>
       )}
     </>
   );
