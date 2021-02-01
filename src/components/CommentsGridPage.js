@@ -4,10 +4,10 @@ import moment from 'moment';
 import { Box } from '@material-ui/core';
 import { useQuery } from 'react-query';
 import axios from 'axios';
-
-import { Comment } from './components/Comment';
-import { SortBySelector, SortEnum } from './components/SortBySelector';
-
+import { Comment } from './Comment';
+import { SortBySelector } from './SortBySelector';
+import { SortEnum } from '../config/SortEnum';
+import { FilterEnum } from 'src/config/FilterEnum';
 export const CommentsGridPage = () => {
   // fetching comments
   const comments = useQuery(
@@ -77,7 +77,16 @@ export const CommentsGridPage = () => {
   return (
     <>
       {/* saved in local storage or a cookie */}
-      <SortBySelector initialSort={SortEnum.ACCOUNT_AGE} />
+      <SortBySelector
+        configEnum={SortEnum}
+        initialSort={SortEnum.ACCOUNT_AGE.label}
+        sorterTitle="SORT COMMENTS BY:"
+      />
+      <SortBySelector
+        configEnum={FilterEnum}
+        initialSort={FilterEnum.GLOBAL.label}
+        sorterTitle="FILTER COMMENTS BY:"
+      />
 
       {!!commentGroups && (
         <Box style={{ display: 'flex', flexGrow: 1, overflow: 'hidden' }} container spacing={3}>
