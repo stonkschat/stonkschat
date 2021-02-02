@@ -87,8 +87,8 @@ export const CommentsGridPage = () => {
     },
     {
       keepPreviousData: true, // so the data doesnt disappear
-      refetchInterval: false,
-      // refetchInterval: 15 * 1000
+      // refetchInterval: false,
+      refetchInterval: 15 * 1000,
     }
   );
 
