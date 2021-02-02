@@ -51,10 +51,11 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: 'flex',
-    height: 224,
+    height: '86vh',
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
+    minWidth: '15%',
   },
 }));
 
@@ -86,7 +87,8 @@ export const CommentsGridPage = () => {
     },
     {
       keepPreviousData: true, // so the data doesnt disappear
-      refetchInterval: 15 * 1000,
+      refetchInterval: false,
+      // refetchInterval: 15 * 1000
     }
   );
 
@@ -163,14 +165,13 @@ export const CommentsGridPage = () => {
             </Tabs>
             {[1, 2, 3, 4].map((groupIndex) => {
               return (
-                <TabPanel value={value} index={groupIndex - 1}>
-                  <div>showing panel for group {groupIndex}</div>
+                <TabPanel style={{ overflow: 'auto' }} value={value} index={groupIndex - 1}>
+                  {commentGroups[groupIndex]?.map?.((comment) => {
+                    const author = authors.data.find((author) => comment.author === author.name);
+                    return <Comment key={comment.id} comment={comment} author={author} />;
+                  })}
                 </TabPanel>
               );
-              // <Tab label={groupIndex} {...allyProps(groupIndex)}>
-              //   {commentGroups[groupIndex]?.map?.((comment) => {
-              //     const author = authors.data.find((author) => comment.author === author.name);
-              //     return <Comment key={comment.id} comment={comment} author={author} />;
             })}
           </div>
         ) : (
